@@ -3,90 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>恋爱日记本 - Love Story Diary</title>
+    <title>恋爱时光机 - Love Story Timeline</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="background-decor"></div>
     <div class="container">
         <header>
-            <h1>💕 恋爱日记本</h1>
-            <p class="subtitle">记录我们的每一个美好瞬间</p>
+            <div class="header-content">
+                <h1>💕 恋爱时光机</h1>
+                <p class="subtitle">记录我们相爱的每一个瞬间</p>
+            </div>
         </header>
 
         <div class="main-content">
-            <!-- Add Entry Section -->
-            <section class="add-entry-section">
-                <h2>✍️ 添加日记</h2>
+            <section class="add-entry-section glass-card">
+                <div class="section-header">
+                    <h2><i class="fas fa-pen-fancy"></i> 写日记</h2>
+                </div>
                 <form id="diaryForm">
-                    <div class="form-group">
-                        <label for="entryDate">日期：</label>
-                        <input type="date" id="entryDate" required>
+                    <div class="form-row">
+                        <div class="form-group half">
+                            <label for="entryDate">📅 日期</label>
+                            <input type="date" id="entryDate" required>
+                        </div>
+                        <div class="form-group half">
+                            <label for="entryTitle">✨ 标题</label>
+                            <input type="text" id="entryTitle" placeholder="美好的一天..." required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group half">
+                            <label for="entryLocation">📍 地点</label>
+                            <input type="text" id="entryLocation" placeholder="我们在哪里？">
+                        </div>
+                        <div class="form-group half">
+                            <label for="entryEvent">🎉 事件</label>
+                            <input type="text" id="entryEvent" placeholder="一起做了什么？">
+                        </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="entryTitle">标题：</label>
-                        <input type="text" id="entryTitle" placeholder="给这个美好的日子起个标题..." required>
+                        <label>📝 内容</label>
+                        <div class="editor-toolbar">
+                            <button type="button" data-cmd="bold" title="加粗"><i class="fas fa-bold"></i></button>
+                            <button type="button" data-cmd="italic" title="斜体"><i class="fas fa-italic"></i></button>
+                            <button type="button" data-cmd="underline" title="下划线"><i class="fas fa-underline"></i></button>
+                            <span class="separator">|</span>
+                            <button type="button" data-cmd="justifyLeft" title="左对齐"><i class="fas fa-align-left"></i></button>
+                            <button type="button" data-cmd="justifyCenter" title="居中"><i class="fas fa-align-center"></i></button>
+                            <span class="separator">|</span>
+                            <button type="button" data-cmd="insertUnorderedList" title="列表"><i class="fas fa-list-ul"></i></button>
+                            <button type="button" data-cmd="foreColor" data-val="#ff6b9d" title="粉色文字"><i class="fas fa-font" style="color:#ff6b9d;"></i></button>
+                        </div>
+                        <div id="entryContentEditor" class="rich-editor" contenteditable="true" placeholder="记录下今天的故事..."></div>
                     </div>
 
                     <div class="form-group">
-                        <label for="entryLocation">地点：</label>
-                        <input type="text" id="entryLocation" placeholder="我们在哪里？(可选)">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="entryEvent">事件：</label>
-                        <input type="text" id="entryEvent" placeholder="我们做了什么？(可选)">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="entryContent">内容：</label>
-                        <textarea id="entryContent" rows="6" placeholder="记录下今天的故事..." required></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="entryImage">上传图片：</label>
-                        <input type="file" id="entryImage" accept="image/*" multiple>
+                        <label for="entryImage">📷 上传照片</label>
+                        <div class="file-upload-wrapper">
+                            <input type="file" id="entryImage" accept="image/*" multiple>
+                            <div class="upload-btn-content">
+                                <i class="fas fa-cloud-upload-alt"></i> 点击选择图片
+                            </div>
+                        </div>
                         <div id="imagePreview" class="image-preview"></div>
                     </div>
 
-                    <button type="submit" class="btn btn-primary">💾 保存日记</button>
+                    <button type="submit" class="btn btn-primary btn-lg"><i class="fas fa-save"></i> 保存美好回忆</button>
                 </form>
             </section>
 
-            <!-- Filter Section -->
-            <section class="filter-section">
-                <h2>🔍 查找日记</h2>
+            <section class="filter-section glass-card">
+                <div class="filter-header">
+                    <h3><i class="fas fa-search"></i> 回忆搜索</h3>
+                    <button id="clearFilter" class="btn btn-text">清除筛选</button>
+                </div>
                 <div class="filter-controls">
-                    <div class="filter-group">
-                        <label for="filterDate">按日期：</label>
-                        <input type="date" id="filterDate">
-                    </div>
-                    <div class="filter-group">
-                        <label for="filterLocation">按地点：</label>
-                        <input type="text" id="filterLocation" placeholder="搜索地点...">
-                    </div>
-                    <div class="filter-group">
-                        <label for="filterEvent">按事件：</label>
-                        <input type="text" id="filterEvent" placeholder="搜索事件...">
-                    </div>
-                    <button id="clearFilter" class="btn btn-secondary">清除筛选</button>
+                    <input type="date" id="filterDate" class="glass-input">
+                    <input type="text" id="filterLocation" placeholder="搜索地点..." class="glass-input">
+                    <input type="text" id="filterEvent" placeholder="搜索事件..." class="glass-input">
                 </div>
             </section>
 
-            <!-- Entries Display Section -->
             <section class="entries-section">
                 <div class="entries-header">
-                    <h2>📖 我们的故事</h2>
+                    <h2>⏳ 我们的故事线</h2>
                     <div class="export-buttons">
-                        <button id="exportAllPDF" class="btn btn-export">📄 导出全部为PDF</button>
-                        <button id="exportAllPNG" class="btn btn-export">🖼️ 导出全部为PNG</button>
+                        <button id="exportAllPDF" class="btn btn-outline"><i class="far fa-file-pdf"></i> PDF</button>
+                        <button id="exportAllPNG" class="btn btn-outline"><i class="far fa-image"></i> PNG</button>
                     </div>
                 </div>
-                <div id="entriesContainer" class="entries-container">
+                <div id="entriesContainer" class="timeline-container">
                     <p class="no-entries">还没有日记，开始记录你们的故事吧！💑</p>
                 </div>
             </section>
         </div>
+    </div>
+    
+    <div id="imageModal" class="modal">
+        <span class="modal-close">&times;</span>
+        <img class="modal-content" id="modalImage">
     </div>
 
     <script src="script.js"></script>
