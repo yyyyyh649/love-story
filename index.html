@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>恋爱日记本 - Love Story Diary</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>💕 恋爱日记本</h1>
+            <p class="subtitle">记录我们的每一个美好瞬间</p>
+        </header>
+
+        <div class="main-content">
+            <!-- Add Entry Section -->
+            <section class="add-entry-section">
+                <h2>✍️ 添加日记</h2>
+                <form id="diaryForm">
+                    <div class="form-group">
+                        <label for="entryDate">日期：</label>
+                        <input type="date" id="entryDate" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="entryTitle">标题：</label>
+                        <input type="text" id="entryTitle" placeholder="给这个美好的日子起个标题..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="entryLocation">地点：</label>
+                        <input type="text" id="entryLocation" placeholder="我们在哪里？(可选)">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="entryEvent">事件：</label>
+                        <input type="text" id="entryEvent" placeholder="我们做了什么？(可选)">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="entryContent">内容：</label>
+                        <textarea id="entryContent" rows="6" placeholder="记录下今天的故事..." required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="entryImage">上传图片：</label>
+                        <input type="file" id="entryImage" accept="image/*" multiple>
+                        <div id="imagePreview" class="image-preview"></div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">💾 保存日记</button>
+                </form>
+            </section>
+
+            <!-- Filter Section -->
+            <section class="filter-section">
+                <h2>🔍 查找日记</h2>
+                <div class="filter-controls">
+                    <div class="filter-group">
+                        <label for="filterDate">按日期：</label>
+                        <input type="date" id="filterDate">
+                    </div>
+                    <div class="filter-group">
+                        <label for="filterLocation">按地点：</label>
+                        <input type="text" id="filterLocation" placeholder="搜索地点...">
+                    </div>
+                    <div class="filter-group">
+                        <label for="filterEvent">按事件：</label>
+                        <input type="text" id="filterEvent" placeholder="搜索事件...">
+                    </div>
+                    <button id="clearFilter" class="btn btn-secondary">清除筛选</button>
+                </div>
+            </section>
+
+            <!-- Entries Display Section -->
+            <section class="entries-section">
+                <div class="entries-header">
+                    <h2>📖 我们的故事</h2>
+                    <div class="export-buttons">
+                        <button id="exportAllPDF" class="btn btn-export">📄 导出全部为PDF</button>
+                        <button id="exportAllPNG" class="btn btn-export">🖼️ 导出全部为PNG</button>
+                    </div>
+                </div>
+                <div id="entriesContainer" class="entries-container">
+                    <p class="no-entries">还没有日记，开始记录你们的故事吧！💑</p>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
